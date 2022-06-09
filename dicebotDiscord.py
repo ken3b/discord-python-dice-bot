@@ -36,60 +36,60 @@ async def on_message(message):
         ctr = 0
 
         for i in x:
-            valall = [i.find("+"), i.find("-"), i.find("*"), i.find("/"), i.find("("), i.find(")")]
+            valall = [x[ctr].find("+"), x[ctr].find("-"), x[ctr].find("*"), x[ctr].find("/"), x[ctr].find("("), x[ctr].find(")")]
             for j in range(len(valall)):
                 if(valall[j] == -1):
                     valall[j] = 100000
             if(min(valall) < 100):
-                if(valall[0] != -1 and len(i) > 1 and min(valall) == valall[0]):
+                if(valall[0] != -1 and len(x[ctr]) > 1 and min(valall) == valall[0]):
                     if(i.find("+") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find("+"))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find("+"))])
                         x.insert(ctr + 1, "+")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find("+")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, "+")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find("+")+1):len(x[ctr+1])]
-                elif(valall[1] != -1 and len(i) > 1 and min(valall) == valall[1]):
+                elif(valall[1] != -1 and len(x[ctr]) > 1 and min(valall) == valall[1]):
                     if(i.find("-") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find("-"))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find("-"))])
                         x.insert(ctr + 1, "-")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find("-")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, "-")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find("-")+1):len(x[ctr+1])]
-                elif(valall[2] != -1 and len(i) > 1 and min(valall) == valall[2]):
+                elif(valall[2] != -1 and len(x[ctr]) > 1 and min(valall) == valall[2]):
                     if(i.find("*") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find("*"))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find("*"))])
                         x.insert(ctr + 1, "*")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find("*")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, "*")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find("*")+1):len(x[ctr+1])]
-                elif(valall[3] != -1 and len(i) > 1 and min(valall) == valall[3]):
+                elif(valall[3] != -1 and len(x[ctr]) > 1 and min(valall) == valall[3]):
                     if(i.find("/") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find("/"))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find("/"))])
                         x.insert(ctr + 1, "/")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find("/")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, "/")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find("/")+1):len(x[ctr+1])]
-                elif(valall[4] != -1 and len(i) > 1 and min(valall) == valall[4]):
+                elif(valall[4] != -1 and len(x[ctr]) > 1 and min(valall) == valall[4]):
                     if(i.find("(") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find("("))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find("("))])
                         x.insert(ctr + 1, "+")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find("(")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, "(")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find("(")+1):len(x[ctr+1])]
-                elif(valall[5] != -1 and len(i) > 1 and min(valall) == valall[5]):
+                elif(valall[5] != -1 and len(x[ctr]) > 1 and min(valall) == valall[5]):
                     if(i.find(")") > 0):
-                        x.insert(ctr, x[ctr][0:(i.find(")"))])
+                        x.insert(ctr, x[ctr][0:(x[ctr].find(")"))])
                         x.insert(ctr + 1, ")")
                         x[ctr+2] = x[ctr+2][(x[ctr+2].find(")")+1):len(x[ctr+2])]
                     else:
                         x.insert(ctr, ")")
                         x[ctr+1] = x[ctr+1][(x[ctr+1].find(")")+1):len(x[ctr+1])]
-                ctr+=1
+            ctr+=1
 
         ctr = 0
         answer = ""
@@ -180,10 +180,10 @@ def run(x, y):
                 elif(x[ctr-1] == "/"):
                     tally += multiplicand / roll
                     multiplicand = 1
-                if(ctr < len(x)-1 and x[ctr+1].isdigit()):
-                    out = "Error: Missing Operator."
-                    tally = 0
-                    return (out,tally)
+            if(ctr < len(x)-1 and x[ctr+1].isdigit()):
+                out = "Error: Missing Operator."
+                tally = 0
+                return (out,tally)
                 
         elif (i.isdigit()):
             if(len(x) > ctr+1 and (x[ctr+1] == "*" or x[ctr+1] == "/")):
@@ -201,10 +201,10 @@ def run(x, y):
                 else:
                     tally += multiplicand / int(i)
                     multiplicand = 1
-            if(ctr < len(x)-1 and x[ctr+1].isdigit()):
-                    out = "Error: Missing Operator."
-                    tally = 0
-                    return (out,tally)
+            if(ctr < len(x) and (x[ctr+1].isdigit() or x[ctr+1].find("d") != -1)):
+                out = "Error: Missing Operator."
+                tally = 0
+                return (out,tally)
         
         ctr+=1
 
