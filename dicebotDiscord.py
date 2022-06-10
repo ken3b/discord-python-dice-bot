@@ -201,7 +201,7 @@ def run(x, y):
                 else:
                     tally += multiplicand / int(i)
                     multiplicand = 1
-            if(ctr < len(x) and (x[ctr+1].isdigit() or x[ctr+1].find("d") != -1)):
+            if(ctr < len(x)-1 and (x[ctr+1].isdigit() or x[ctr+1].find("d") != -1)):
                 out = "Error: Missing Operator."
                 tally = 0
                 return (out,tally)
