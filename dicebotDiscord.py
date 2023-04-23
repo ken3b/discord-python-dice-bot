@@ -11,7 +11,11 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = 'DiscordBotTokenHere'
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.messages = True
+intents.message_content = True
+
+client = discord.Client(intents = intents)
 
 @client.event
 async def on_ready():
